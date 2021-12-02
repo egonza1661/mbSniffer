@@ -26,6 +26,11 @@ MBSniffer is a free Qt-based implementation of a serial ModBus RTU traffic decod
 A graphical user interface allows an easy bus monitor for sniffing all
 traffic on the bus.
 
+At this point, the program works on linux. It's been tested with a speed of 115200 Bauds.
+It needs to be build and tested in Windows (next step).
+
+As I stepped away from windows long time ago, I gratefully take any help on this behave.
+
 
 
 Requirements
