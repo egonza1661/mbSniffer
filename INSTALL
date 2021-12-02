@@ -1,4 +1,4 @@
-QModBus can be easily built using Qt5 qmake:
+mbSniffer can be easily built using Qt5 qmake:
 
 mkdir build
 cd build
