@@ -1,0 +1,50 @@
+MBSniffer
+==========
+Copyright (c) 2021      Eduardo Adrián González
+
+
+This program is free software; you can redistribute it and/or modify 
+it under the terms of the GNU General Public License as published by the
+Free Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+
+
+What is MBSniffer?
+----------------
+
+MBSniffer is a free Qt-based implementation of a serial ModBus RTU traffic decoder.
+A graphical user interface allows an easy bus monitor for sniffing all
+traffic on the bus.
+
+
+
+Requirements
+------------
+
+* Qt5
+* GCC
+
+
+
+Building
+--------
+
+See INSTALL for information on how to build MBSniffer.
+
+
+
+Contact
+-------
+
+Any suggestions, patches etc. are welcome. Simply send a mail to
+egonza1661 (at) gmail (dot) com

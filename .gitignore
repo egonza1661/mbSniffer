@@ -1,0 +1,6 @@
+debian/debhelper-build-stamp
+debian/files
+debian/mbsniffer.debhelper.log
+debian/qmodbus.substvars
+debian/mbsniffer/
+obj-x86_64-linux-gnu/

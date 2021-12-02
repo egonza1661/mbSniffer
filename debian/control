@@ -1,0 +1,13 @@
+Source: mbsniffer
+Section: electronics
+Priority: optional
+Maintainer: Eduardo González <egonza1661@gmail.com>
+Build-Depends: debhelper (>= 4.0.0), cmake, libqt5-dev
+Standards-Version: 3.6.1.1
+
+Package: mbsniffer
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: QT modbus tools
+  A tools to sniff modbus networt on RTU mode.
+
