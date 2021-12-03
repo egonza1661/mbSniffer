@@ -1,0 +1,6 @@
+The AppImage was build in this system:
+
+System:    Kernel: 5.4.0-91-generic x86_64 bits: 64 compiler: gcc v: 9.3.0 Desktop: Cinnamon 5.0.7 
+           wm: muffin dm: LightDM Distro: Linux Mint 20.2 Uma base: Ubuntu 20.04 focal 
+
+It may not work in older kernels.
