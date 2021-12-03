@@ -4,7 +4,10 @@ mkdir build
 cd build
 qmake ../mbSniffer
 make
+and that's it. 
 
-and that's it. Alternatively open the project with Qt Creator and build
+Also, There is an AppImage build in the AppImage directory.
+
+Alternatively open the project with Qt Creator and build
 it with the according tool buttons.
 

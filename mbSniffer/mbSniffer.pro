@@ -62,3 +62,4 @@ RESOURCES += \
 DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
 
 include(deployment.pri)
+
