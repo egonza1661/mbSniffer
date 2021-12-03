@@ -1,6 +1,6 @@
 TARGET = mbSniffer
 TEMPLATE = app
-VERSION = 1.0
+VERSION = 1.0.0
 
 
 QT       += core gui
@@ -57,5 +57,8 @@ FORMS += \
 
 RESOURCES += \
     sniffer_res.qrc
+
+
+DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
 
 include(deployment.pri)
