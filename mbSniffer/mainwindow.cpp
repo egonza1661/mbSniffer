@@ -28,12 +28,25 @@
 #include "ui_mainwindow.h"
 
 #include <QMessageBox>
+#include <QScrollBar>
 #include <QTableWidget>
 
 #include <aboutdialog.h>
 #include <qextserialenumerator.h>
 #include <qextserialport.h>
 
+#ifdef DEBUG_MODE
+#define MAINWINDOW_DEBUG_MODE
+#endif
+
+
+//#ifdef MAINWINDOW_DEBUG_MODE
+//#define TESTING_WINDOW_DEBUG_MODE
+//#endif
+
+#ifdef TESTING_WINDOW_DEBUG_MODE
+#include <QTimer>
+#endif
 
 
 /* Modbus function codes */
@@ -80,7 +93,8 @@ MainWindow::MainWindow(QWidget *parent)
     , port(nullptr)
 {
     ui->setupUi(this);
-
+    ui->splitter->setStretchFactor(0,1);
+    ui->splitter->setStretchFactor(1,2);
     setWindowTitle("MODBUS Sniffer");
 
 
@@ -99,6 +113,46 @@ MainWindow::MainWindow(QWidget *parent)
     onPortSettingsChange();
 
     ui->busMonTable->horizontalHeader()->setStretchLastSection(true);
+
+#ifdef TESTING_WINDOW_DEBUG_MODE
+    QTimer *t = new QTimer(this);
+    t->setInterval(500);
+    connect(t, &QTimer::timeout, this, [=](){
+        MB_Data mbData;
+
+        unsigned char c;
+        c = 1;
+        mbData.slaveID = QString().asprintf("%.2x", c&0xFF);
+        c = 3;
+        mbData.cmd = QString().asprintf("%.2x", c&0xFF);
+        mbData.descrition = getCmdDescrition(c);
+
+        for(int i=0; i<2; i++){
+            mbData.data.append(QString().asprintf("%.2x ", i&0xFF));
+        }
+
+
+        QString s;
+        s.append(mbData.slaveID).append(' ');
+        s.append(mbData.cmd).append(' ');
+        s.append(mbData.data);
+
+        mbData.status = "OK";
+        s.append( " OK");
+
+        if(ui->chkLockRaw->isChecked())
+            ui->plainTextEdit->insertPlainText(s.prepend('\n'));
+        else{
+            ui->plainTextEdit->appendPlainText(s);
+            ui->plainTextEdit->moveCursor(ui->plainTextEdit->textCursor().End);
+        }
+
+        busMonitorAddItem(mbData);
+        if(!ui->chkLockCmds->isChecked())
+            ui->busMonTable->scrollToBottom();
+    });
+    t->start(500);
+#endif
 
 }
 MainWindow::~MainWindow()
@@ -354,8 +408,6 @@ void MainWindow::onDsrChanged(bool status)
 void MainWindow::onPortSettingsChange()
 {
     ui->checkBox->setChecked(false);
-    if(port)
-        port->close();
 }
 
 void MainWindow::onStartListening()

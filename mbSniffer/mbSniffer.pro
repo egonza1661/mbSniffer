@@ -32,6 +32,8 @@ HEADERS += \
 
 INCLUDEPATH +=  3rdparty/qextserialport
 
+CONFIG(debug, debug|release) {DEFINES += DEBUG_MODE}
+
 unix {
     SOURCES += 3rdparty/qextserialport/posix_qextserialport.cpp	\
            3rdparty/qextserialport/qextserialenumerator_unix.cpp
