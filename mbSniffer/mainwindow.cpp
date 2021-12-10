@@ -362,24 +362,26 @@ void MainWindow::onActivatePort()
         port->close();
         delete port;
     }
-    port = new QextSerialPort(ui->serialPort->currentText(), QextSerialPort::EventDriven);
-    port->setBaudRate(getBaudRate());
-    port->setFlowControl(FLOW_OFF);
-    port->setParity(getParity());
-    port->setDataBits(getDataBits());
-    port->setStopBits(getStopBits());
-    if (port->open(QIODevice::ReadWrite) == true) {
-        connect(port, &QIODevice::readyRead, this, &MainWindow::onReadyRead);
-        connect(port, &QextSerialPort::dsrChanged, this, &MainWindow::onDsrChanged);
-        //        if (!(port->lineStatus() & LS_DSR))
-        //            QMessageBox::warning(this, "Atention", "warning: device is not turned on");
-        ui->statusbar->showMessage(QString("Listening for data on ").append(port->portName()));
-    }
-    else {
-        QString msg = QString("Device failed to open: ").append(port->errorString());
-        ui->statusbar->showMessage(msg);
-        QMessageBox::critical(this, "Error", msg);
-        ui->checkBox->setChecked(false);
+    if(ui->checkBox->isChecked()){
+        port = new QextSerialPort(ui->serialPort->currentText(), QextSerialPort::EventDriven);
+        port->setBaudRate(getBaudRate());
+        port->setFlowControl(FLOW_OFF);
+        port->setParity(getParity());
+        port->setDataBits(getDataBits());
+        port->setStopBits(getStopBits());
+        if (port->open(QIODevice::ReadWrite) == true) {
+            connect(port, &QIODevice::readyRead, this, &MainWindow::onReadyRead);
+            connect(port, &QextSerialPort::dsrChanged, this, &MainWindow::onDsrChanged);
+            //        if (!(port->lineStatus() & LS_DSR))
+            //            QMessageBox::warning(this, "Atention", "warning: device is not turned on");
+            ui->statusbar->showMessage(QString("Listening for data on ").append(port->portName()));
+        }
+        else {
+            QString msg = QString("Device failed to open: ").append(port->errorString());
+            ui->statusbar->showMessage(msg);
+            QMessageBox::critical(this, "Error", msg);
+            ui->checkBox->setChecked(false);
+        }
     }
 }
 
