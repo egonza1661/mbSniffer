@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="sniffer_res.qrc">
     <normaloff>:/images/sniffer.png</normaloff>:/images/sniffer.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -280,6 +280,13 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QCheckBox" name="chkLockRaw">
+        <property name="text">
+         <string>lock</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item>
@@ -324,6 +331,13 @@
         </property>
         <property name="text">
          <string>Clear Commands Data</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="chkLockCmds">
+        <property name="text">
+         <string>lock</string>
         </property>
        </widget>
       </item>
@@ -396,7 +410,9 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="sniffer_res.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>btnClearRawData</sender>

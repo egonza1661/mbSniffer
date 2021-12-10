@@ -333,8 +333,14 @@ void MainWindow::onReadyRead()
         mbData.status = "ERROR";
         s.append(" ERROR");
     }
-    ui->plainTextEdit->appendPlainText(s);
+    if(ui->chkLockRaw->isChecked())
+        ui->plainTextEdit->insertPlainText(s);
+    else
+        ui->plainTextEdit->appendPlainText(s);
+
     busMonitorAddItem(mbData);
+    if(!ui->chkLockCmds->isChecked())
+        ui->busMonTable->scrollToBottom();
 }
 
 void MainWindow::onDsrChanged(bool status)
@@ -383,6 +389,8 @@ void MainWindow::onActivatePort()
             ui->checkBox->setChecked(false);
         }
     }
+    else
+        ui->statusbar->showMessage(QString());
 }
 
 
