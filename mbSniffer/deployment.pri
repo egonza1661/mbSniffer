@@ -16,7 +16,7 @@ win32 {
 }
 
 unix:!android {
-    PREFIX = $$absolute_path(../build-flatpack/usr/bin)
+    PREFIX = $$absolute_path(../build-appimage/usr/bin)
         isEmpty(PREFIX) {
 		PREFIX = /usr/local/bin
 	}
